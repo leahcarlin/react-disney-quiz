@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { getRandomCharacter } from "../../store/actions";
+import Character from "./Character";
+import Choices from "./Choices";
 
 export default function Card() {
   const [character, setCharacter] = useState(null); // State for the character object
   const [error, setError] = useState(null); // State for handling errors
-
 
   // @Todo: add filter for films vs. tvShows
   useEffect(() => {
@@ -25,8 +26,9 @@ export default function Card() {
         <h2>{error}</h2>
       ) : character ? (
         <div>
-          <img src={character.imageUrl} alt={character.name} />
-          <h2>{character.name}</h2>{" "}
+          <h2>Name the Disney film this character appears in </h2>
+          <Character character={character} />
+          <Choices character={character} />
         </div>
       ) : (
         <h2>Loading...</h2>

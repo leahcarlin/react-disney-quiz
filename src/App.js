@@ -3,7 +3,8 @@ import Card from "./Components/Card/Card.js";
 function App() {
   return (
     <div className="App">
-      Disney image <Card />
+      <h1>Disney Quiz</h1>
+      <Card />
     </div>
   );
 }

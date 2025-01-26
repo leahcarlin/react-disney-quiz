@@ -3,7 +3,6 @@ import axios from "axios";
 const apiUrl = "https://api.disneyapi.dev/character";
 
 export const getFilteredCharacters = async (type) => {
-  const apiUrl = "https://api.disneyapi.dev/character";
   try {
     const res = await axios.get(apiUrl);
     const characters = res.data.data;
@@ -21,16 +20,43 @@ export const getFilteredCharacters = async (type) => {
 };
 
 export const getRandomCharacter = async (type) => {
-  const randomId = Math.floor(Math.random() * (7000 - 10 + 1)) + 10;
   try {
-    const res = await getFilteredCharacters(type);
-    if (res) {
-      const randomCharacter = res.find(
-        (character) => (character._id = randomId)
-      );
+    const filteredCharacters = await getFilteredCharacters(type);
+    const randomIndex = Math.floor(Math.random() * filteredCharacters.length);
+    if (filteredCharacters) {
+      const randomCharacter = filteredCharacters[randomIndex];
       console.log("random", randomCharacter);
       return randomCharacter;
     } else throw new Error("Character not found");
+  } catch (e) {
+    console.error(e.message);
+  }
+};
+export const getRandomChoices = async (type, id) => {
+  const numChoices = 3;
+  const choices = [];
+  try {
+    // get random choices to include in multiple choice answer
+    const characters = await getFilteredCharacters(type);
+    if (characters) {
+      for (
+        let i = 0;
+        i < characters.length && choices.length < numChoices;
+        i++
+      ) {
+        let choice = await getRandomCharacter(type);
+        // check if random choice is same as displayed character
+        while (choice._id === id) {
+          choice = await getRandomCharacter(type);
+        }
+
+        console.log("choice", choice[type][0], i);
+        choices.push(choice[type][0]);
+      }
+      // return only array of films or tvShows (not entire character)
+      console.log("choices", choices);
+      return choices;
+    } else throw new Error("Unable to fetch random choices");
   } catch (e) {
     console.error(e.message);
   }
