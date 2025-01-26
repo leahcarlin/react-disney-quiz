@@ -4,8 +4,8 @@ import Character from "./Character";
 import Choices from "./Choices";
 
 export default function Card() {
-  const [character, setCharacter] = useState(null); // State for the character object
-  const [error, setError] = useState(null); // State for handling errors
+  const [character, setCharacter] = useState(null);
+  const [error, setError] = useState(null);
 
   // @Todo: add filter for films vs. tvShows
   useEffect(() => {

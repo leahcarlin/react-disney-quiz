@@ -11,7 +11,6 @@ export const getFilteredCharacters = async (type) => {
       (character) =>
         Array.isArray(character[type]) && character[type].length > 0
     );
-    console.log("filtered", filteredCharacters);
     return filteredCharacters;
   } catch (error) {
     console.error(error.message);
@@ -25,13 +24,14 @@ export const getRandomCharacter = async (type) => {
     const randomIndex = Math.floor(Math.random() * filteredCharacters.length);
     if (filteredCharacters) {
       const randomCharacter = filteredCharacters[randomIndex];
-      console.log("random", randomCharacter);
+
       return randomCharacter;
     } else throw new Error("Character not found");
   } catch (e) {
     console.error(e.message);
   }
 };
+
 export const getRandomChoices = async (type, id) => {
   const numChoices = 3;
   const choices = [];
@@ -50,11 +50,9 @@ export const getRandomChoices = async (type, id) => {
           choice = await getRandomCharacter(type);
         }
 
-        console.log("choice", choice[type][0], i);
         choices.push(choice[type][0]);
       }
       // return only array of films or tvShows (not entire character)
-      console.log("choices", choices);
       return choices;
     } else throw new Error("Unable to fetch random choices");
   } catch (e) {
