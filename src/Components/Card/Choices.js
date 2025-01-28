@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import { getRandomChoices } from "../../store/actions";
 import { shuffleArray } from "../../utils";
 
-export default function Choices(character) {
+export default function Choices(props) {
+  const { character, category } = props;
   const [choices, setChoices] = useState([]);
   const [error, setError] = useState("");
-  const currentCharacter = character.character;
-  console.log(currentCharacter);
+
   useEffect(() => {
     const getChoices = async () => {
       try {
-        const data = await getRandomChoices("films", currentCharacter._id);
-        // @ Todo: randomize
-        const options = [...data, currentCharacter.films[0]];
+        const data = await getRandomChoices(category, character._id);
+
+        const options = [...data, character[category][0]];
         setChoices(shuffleArray(options));
       } catch (err) {
         setError(err.message);
@@ -20,10 +20,10 @@ export default function Choices(character) {
     };
 
     getChoices();
-  }, [currentCharacter, currentCharacter._id]);
+  }, [category, character]);
 
   const handleClick = (e) => {
-    if (e.currentTarget.value === currentCharacter.films[0]) console.log(true);
+    if (e.currentTarget.value === character[category][0]) console.log(true);
   };
   // regex to clean up choices and remove any (film)
   const trimChoices = (choices) => {
