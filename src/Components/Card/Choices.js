@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { getRandomChoices } from "../../store/actions";
 import { shuffleArray } from "../../utils";
 
-export default function Choices(props) {
-  const { character, category } = props;
+export default function Choices({ category, character, handleNext }) {
   const [choices, setChoices] = useState([]);
   const [error, setError] = useState("");
+  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     const getChoices = async () => {
@@ -23,7 +23,7 @@ export default function Choices(props) {
   }, [category, character]);
 
   const handleClick = (e) => {
-    if (e.currentTarget.value === character[category][0]) console.log(true);
+    setSelected(e.target.value);
   };
   // regex to clean up choices and remove any (film)
   const trimChoices = (choices) => {
@@ -31,13 +31,30 @@ export default function Choices(props) {
   };
   return (
     <div>
+      {selected ? (
+        selected === character[category][0] ? (
+          <h3 className="correct">Correct!</h3>
+        ) : (
+          <h3 className="incorrect">Incorrect</h3>
+        )
+      ) : null}
       <ul className="choices">
         {error ? (
           <li>{error}</li>
         ) : choices.length > 0 ? (
           trimChoices(choices).map((choice, index) => (
             <li key={index}>
-              <button value={choice} onClick={(e) => handleClick(e)}>
+              <button
+                value={choice}
+                onClick={(e) => handleClick(e)}
+                className={
+                  selected
+                    ? choice === character[category][0]
+                      ? "correct"
+                      : "incorrect"
+                    : ""
+                }
+              >
                 {choice}
               </button>
             </li>
@@ -46,6 +63,11 @@ export default function Choices(props) {
           <li>Loading...</li>
         )}
       </ul>
+      {selected && (
+        <button type="button" onClick={handleNext}>
+          Next
+        </button>
+      )}
     </div>
   );
 }

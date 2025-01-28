@@ -3,8 +3,7 @@ import { getRandomCharacter } from "../../store/actions";
 import Character from "./Character";
 import Choices from "./Choices";
 
-export default function Card(props) {
-  const { category } = props;
+export default function Card({ category, cardKey, handleNext }) {
   const [character, setCharacter] = useState(null);
   const [error, setError] = useState(null);
 
@@ -19,7 +18,7 @@ export default function Card(props) {
     };
 
     getCharacter();
-  }, [category]);
+  }, [category, cardKey]);
   return (
     <div className="card">
       {error ? (
@@ -28,7 +27,11 @@ export default function Card(props) {
         <div>
           <h2>Name the Disney film this character appears in </h2>
           <Character character={character} />
-          <Choices character={character} category={category} />
+          <Choices
+            character={character}
+            category={category}
+            handleNext={handleNext}
+          />
         </div>
       ) : (
         <h2>Loading...</h2>
