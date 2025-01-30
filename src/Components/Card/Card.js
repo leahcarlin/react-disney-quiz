@@ -3,7 +3,7 @@ import { getRandomCharacter } from "../../store/actions";
 import Character from "./Character";
 import Choices from "./Choices";
 
-export default function Card({ category, cardKey, handleNext }) {
+export default function Card({ category, cardKey, handleNext, finishLoading }) {
   const [character, setCharacter] = useState(null);
   const [error, setError] = useState(null);
 
@@ -32,6 +32,9 @@ export default function Card({ category, cardKey, handleNext }) {
             category={category}
             handleNext={handleNext}
           />
+          <p>
+            {character.name}:{character[category][0]}
+          </p>
         </div>
       ) : (
         <h2>Loading...</h2>

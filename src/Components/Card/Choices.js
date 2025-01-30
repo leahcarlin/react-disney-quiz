@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { getRandomChoices } from "../../store/actions";
 import { shuffleArray } from "../../utils";
 
@@ -7,28 +7,32 @@ export default function Choices({ category, character, handleNext }) {
   const [error, setError] = useState("");
   const [selected, setSelected] = useState(null);
 
-  useEffect(() => {
-    const getChoices = async () => {
-      try {
-        const data = await getRandomChoices(category, character._id);
-
-        const options = [...data, character[category][0]];
-        setChoices(shuffleArray(options));
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-
-    getChoices();
+  const getChoices = useCallback(async () => {
+    try {
+      const data = await getRandomChoices(category, character._id);
+      const options = [...data, character[category][0]];
+      setChoices(shuffleArray(options));
+    } catch (err) {
+      setError(err.message);
+    }
   }, [category, character]);
+
+  useEffect(() => {
+    if (character) {
+      getChoices();
+    }
+  }, [character, getChoices]);
 
   const handleClick = (e) => {
     setSelected(e.target.value);
   };
-  // regex to clean up choices and remove any (film)
+  // regex to clean up choices and remove any (film) or (TV series)
   const trimChoices = (choices) => {
-    return choices.map((choice) => choice.replace(/\s?\(film\)\s?/g, ""));
+    return choices.map((choice) =>
+      choice.replace(/\s?\((film|TV series)\)\s?/g, "")
+    );
   };
+
   return (
     <div>
       {selected ? (

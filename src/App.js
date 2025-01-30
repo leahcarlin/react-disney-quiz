@@ -7,13 +7,16 @@ function App() {
   const [introComplete, setIntroComplete] = useState(false);
   const [category, setCategory] = useState(null);
   const [cardKey, setCardKey] = useState(0);
+  const [quizFinished, setQuizFinished] = useState(false);
 
   const handleIntro = (e) => {
     setCategory(e.target.value);
     setIntroComplete(true);
   };
   const handleNext = () => {
-    setCardKey((prevKey) => prevKey + 1);
+    if (cardKey < 10) {
+      setCardKey((prevKey) => prevKey + 1);
+    } else setQuizFinished(true);
   };
   return (
     <div className="App">
@@ -21,6 +24,7 @@ function App() {
         <div className="quiz">
           <h1>Disney Quiz</h1>
           <Card cardKey={cardKey} category={category} handleNext={handleNext} />
+          <p>{cardKey}</p>
         </div>
       ) : (
         <Intro toggleCategory={handleIntro} />
