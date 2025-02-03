@@ -6,7 +6,6 @@ export const getFilteredCharacters = async (type) => {
   try {
     const res = await axios.get(apiUrl);
     const characters = res.data.data;
-
     const filteredCharacters = characters.filter(
       (character) =>
         Array.isArray(character[type]) && character[type].length > 0

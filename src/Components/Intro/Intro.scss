@@ -1,0 +1,11 @@
+.intro {
+  display: flex;
+  flex-direction: column;
+}
+
+.category,
+.start {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { getRandomCharacter } from "../../store/actions";
-import Character from "./Character";
-import Choices from "./Choices";
+import Choices from "../Choices/Choices";
+import "./Card.scss";
 
-export default function Card({ category, cardKey, handleNext, finishLoading }) {
+export default function Card({ category, count, handleNext }) {
   const [character, setCharacter] = useState(null);
   const [error, setError] = useState(null);
 
@@ -18,27 +18,30 @@ export default function Card({ category, cardKey, handleNext, finishLoading }) {
     };
 
     getCharacter();
-  }, [category, cardKey]);
+  }, [category, count]);
   return (
     <div className="card">
       {error ? (
         <h2>{error}</h2>
       ) : character ? (
         <div>
-          <h2>Name the Disney film this character appears in </h2>
-          <Character character={character} />
+          <p className="prompt">
+            Name the Disney film this character appears in{" "}
+          </p>
+          <div className="character">
+            <div className="image">
+              <img src={character.imageUrl} alt={character.name} />
+            </div>
+            <h3>{character.name}</h3>
+          </div>
           <Choices
             character={character}
             category={category}
             handleNext={handleNext}
+            count={count}
           />
-          <p>
-            {character.name}:{character[category][0]}
-          </p>
         </div>
-      ) : (
-        <h2>Loading...</h2>
-      )}
+      ) : null}
     </div>
   );
 }

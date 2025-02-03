@@ -1,0 +1,42 @@
+@import "../../variables";
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+
+  li,
+  .choice {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  li {
+    list-style-type: none;
+    justify-content: center;
+  }
+}
+
+h3.correct {
+  color: $emerald;
+}
+
+.choice {
+  justify-content: space-between;
+  padding: 20px;
+  margin: 0;
+  border: none;
+  background-color: white;
+  border-radius: 15px;
+
+  .text {
+    display: flex;
+  }
+
+  &.correct {
+    border: 1px solid $emerald;
+    background: $spring-green;
+  }
+}

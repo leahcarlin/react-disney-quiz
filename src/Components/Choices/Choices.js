@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { getRandomChoices } from "../../store/actions";
 import { shuffleArray } from "../../utils";
+import "./Choices.scss";
 
-export default function Choices({ category, character, handleNext }) {
+export default function Choices({ category, character, count, handleNext }) {
   const [choices, setChoices] = useState([]);
   const [error, setError] = useState("");
   const [selected, setSelected] = useState(null);
@@ -22,6 +23,10 @@ export default function Choices({ category, character, handleNext }) {
       getChoices();
     }
   }, [character, getChoices]);
+
+  useEffect(() => {
+    setSelected(null);
+  }, [count]);
 
   const handleClick = (e) => {
     setSelected(e.target.value);
@@ -51,24 +56,28 @@ export default function Choices({ category, character, handleNext }) {
               <button
                 value={choice}
                 onClick={(e) => handleClick(e)}
-                className={
+                className={`choice ${
                   selected
                     ? choice === character[category][0]
                       ? "correct"
                       : "incorrect"
                     : ""
-                }
+                }`}
               >
-                {choice}
+                <div className="index">{index + 1}</div>
+                <div className="text">{choice}</div>
               </button>
             </li>
           ))
-        ) : (
-          <li>Loading...</li>
-        )}
+        ) : null}
       </ul>
       {selected && (
-        <button type="button" onClick={handleNext}>
+        <button
+          className="primary"
+          type="button"
+          value={selected === character[category][0]}
+          onClick={handleNext}
+        >
           Next
         </button>
       )}

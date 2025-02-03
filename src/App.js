@@ -1,31 +1,45 @@
 import "./App.css";
 import { useState } from "react";
 import Card from "./Components/Card/Card.js";
-import Intro from "./Components/Card/Intro.js";
+import Intro from "./Components/Intro/Intro.js";
+import "./App.scss";
 
 function App() {
   const [introComplete, setIntroComplete] = useState(false);
   const [category, setCategory] = useState(null);
-  const [cardKey, setCardKey] = useState(0);
+  const [count, setCount] = useState(1);
+  const [numCorrect, setNumCorrect] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false);
 
-  const handleIntro = (e) => {
-    setCategory(e.target.value);
+  const handleIntro = (category) => {
+    setCategory(category);
     setIntroComplete(true);
   };
-  const handleNext = () => {
-    if (cardKey < 10) {
-      setCardKey((prevKey) => prevKey + 1);
-    } else setQuizFinished(true);
+  const handleNext = (e) => {
+    if (count >= 10) {
+      setQuizFinished(true);
+      return;
+    }
+    // track correct answers
+    if (e.target.value) {
+      setNumCorrect((prev) => prev + 1);
+    }
+    // track progress
+    setCount((prev) => prev + 1);
   };
+
   return (
     <div className="App">
       {introComplete ? (
-        <div className="quiz">
-          <h1>Disney Quiz</h1>
-          <Card cardKey={cardKey} category={category} handleNext={handleNext} />
-          <p>{cardKey}</p>
-        </div>
+        quizFinished ? (
+          <div>FINISHED!</div>
+        ) : (
+          <div className="quiz">
+            <h1>Disney Quiz</h1>
+            <div className="counter">{count}/10</div>
+            <Card count={count} category={category} handleNext={handleNext} />
+          </div>
+        )
       ) : (
         <Intro toggleCategory={handleIntro} />
       )}
