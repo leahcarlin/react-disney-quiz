@@ -16,7 +16,6 @@ function App() {
     setIntroComplete(true);
   };
   const handleNext = (isCorrect) => {
-    console.log(isCorrect);
     if (count >= 10) {
       setQuizFinished(true);
       return;
@@ -33,7 +32,9 @@ function App() {
     <div className="App">
       {introComplete ? (
         quizFinished ? (
-          <div>FINISHED!</div>
+          <div>
+            FINISHED! <div className="score">{numCorrect}</div>
+          </div>
         ) : (
           <div className="quiz">
             <h1>Disney Quiz</h1>

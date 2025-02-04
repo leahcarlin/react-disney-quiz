@@ -42,17 +42,17 @@ export const getRandomChoices = async (type, id) => {
         i < characters.length && choices.length < numChoices;
         i++
       ) {
-        let choice = await getRandomCharacter(type);
-        // check if random choice is same as displayed character
-        while (choice._id === id) {
+        let choice;
+
+        do {
           choice = await getRandomCharacter(type);
-        }
+        } while (choice._id === id || choices.includes(choice[type][0]));
 
         choices.push(choice[type][0]);
       }
-      // return only array of films or tvShows (not entire character)
-      return choices;
-    } else throw new Error("Unable to fetch random choices");
+    }
+    // return only array of films or tvShows (not entire character)
+    return choices;
   } catch (e) {
     console.error(e.message);
   }

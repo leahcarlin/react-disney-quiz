@@ -3,7 +3,6 @@ import { getRandomChoices } from "../../store/actions";
 import { shuffleArray } from "../../utils";
 import "./Choices.scss";
 import Button from "../Button/Button";
-import CheckIcon from "../../assets/images/icon_circle_no_fill.svg";
 import CheckFillIcon from "../../assets/images/icon_circle_fill.svg";
 import CloseIcon from "../../assets/images/icon_x.svg";
 
@@ -30,6 +29,7 @@ export default function Choices({ category, character, count, handleNext }) {
 
   useEffect(() => {
     setSelected(null);
+    setChoices([]);
   }, [count]);
 
   const handleClick = (e) => {
@@ -60,6 +60,7 @@ export default function Choices({ category, character, count, handleNext }) {
               <button
                 value={choice}
                 onClick={(e) => handleClick(e)}
+                style={{ pointerEvents: selected ? "none" : "all" }}
                 className={`choice ${
                   selected
                     ? choice === character[category][0]
