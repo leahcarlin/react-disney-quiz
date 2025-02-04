@@ -15,13 +15,14 @@ function App() {
     setCategory(category);
     setIntroComplete(true);
   };
-  const handleNext = (e) => {
+  const handleNext = (isCorrect) => {
+    console.log(isCorrect);
     if (count >= 10) {
       setQuizFinished(true);
       return;
     }
     // track correct answers
-    if (e.target.value) {
+    if (isCorrect) {
       setNumCorrect((prev) => prev + 1);
     }
     // track progress

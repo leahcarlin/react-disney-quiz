@@ -2,6 +2,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import { getRandomChoices } from "../../store/actions";
 import { shuffleArray } from "../../utils";
 import "./Choices.scss";
+import Button from "../Button/Button";
+import CheckIcon from "../../assets/images/icon_circle_no_fill.svg";
+import CheckFillIcon from "../../assets/images/icon_circle_fill.svg";
+import CloseIcon from "../../assets/images/icon_x.svg";
 
 export default function Choices({ category, character, count, handleNext }) {
   const [choices, setChoices] = useState([]);
@@ -62,24 +66,29 @@ export default function Choices({ category, character, count, handleNext }) {
                       ? "correct"
                       : "incorrect"
                     : ""
-                }`}
+                } ${choice === selected ? "selected" : ""} `}
               >
                 <div className="index">{index + 1}</div>
                 <div className="text">{choice}</div>
+                <div className="mark">
+                  {selected && choice === character[category][0] ? (
+                    <img src={CheckFillIcon} alt="Icon" />
+                  ) : choice === selected ? (
+                    <img src={CloseIcon} alt="Icon" />
+                  ) : null}
+                </div>
               </button>
             </li>
           ))
         ) : null}
       </ul>
       {selected && (
-        <button
-          className="primary"
-          type="button"
+        <Button
+          type="primary"
           value={selected === character[category][0]}
-          onClick={handleNext}
-        >
-          Next
-        </button>
+          title="Next"
+          handleSubmit={() => handleNext(selected === character[category][0])}
+        />
       )}
     </div>
   );
