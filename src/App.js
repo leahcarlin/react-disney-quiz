@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import Card from "./Components/Card/Card.js";
 import Intro from "./Components/Intro/Intro.js";
+import ProgressBar from "./Components/ProgressBar/ProgressBar.js";
 import "./App.scss";
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
         ) : (
           <div className="quiz">
             <h1>Disney Quiz</h1>
-            <div className="counter">{count}/10</div>
+            <ProgressBar count={count} />
             <Card count={count} category={category} handleNext={handleNext} />
           </div>
         )

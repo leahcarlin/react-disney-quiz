@@ -33,6 +33,7 @@ export default function Choices({ category, character, count, handleNext }) {
   }, [count]);
 
   const handleClick = (e) => {
+    e.stopPropagation();
     setSelected(e.target.value);
   };
   // regex to clean up choices and remove any (film) or (TV series)
