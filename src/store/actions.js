@@ -17,14 +17,26 @@ export const getFilteredCharacters = async (type) => {
   }
 };
 
-export const getRandomCharacter = async (type) => {
+export const getRandomCharacter = async (type, usedCharacterIds) => {
   try {
     const filteredCharacters = await getFilteredCharacters(type);
-    const randomIndex = Math.floor(Math.random() * filteredCharacters.length);
-    if (filteredCharacters) {
-      const randomCharacter = filteredCharacters[randomIndex];
-      return randomCharacter;
-    } else throw new Error("Character not found");
+
+    if (!filteredCharacters || filteredCharacters.length === 0) {
+      throw new Error("No characters available");
+    }
+
+    // filter out characters that have already been used
+    const availableCharacters = filteredCharacters.filter(
+      (character) => !usedCharacterIds.includes(character._id)
+    );
+
+    if (availableCharacters.length === 0) {
+      throw new Error("No available characters left to select");
+    }
+
+    // pick a random character from the available list
+    const randomIndex = Math.floor(Math.random() * availableCharacters.length);
+    return availableCharacters[randomIndex];
   } catch (e) {
     console.error(e.message);
   }
@@ -42,11 +54,7 @@ export const getRandomChoices = async (type, id) => {
         i < characters.length && choices.length < numChoices;
         i++
       ) {
-        let choice;
-
-        do {
-          choice = await getRandomCharacter(type);
-        } while (choice._id === id || choices.includes(choice[type][0]));
+        const choice = await getRandomCharacter(type, [id]);
 
         choices.push(choice[type][0]);
       }

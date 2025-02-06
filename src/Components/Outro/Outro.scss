@@ -1,0 +1,23 @@
+@import "../../variables";
+
+.outro {
+  margin: 40px;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: $border-radius-regular;
+  gap: 25px;
+}
+
+.image {
+  height: 300px;
+}
+
+.image img {
+  border-radius: 25px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -3,14 +3,19 @@ import { getRandomCharacter } from "../../store/actions";
 import Choices from "../Choices/Choices";
 import "./Card.scss";
 
-export default function Card({ category, count, handleNext }) {
+export default function Card({
+  category,
+  count,
+  usedCharacterIds,
+  handleNext,
+}) {
   const [character, setCharacter] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const getCharacter = async () => {
       try {
-        const data = await getRandomCharacter(category);
+        const data = await getRandomCharacter(category, usedCharacterIds);
         setCharacter(data);
       } catch (err) {
         setError(err.message);

@@ -38,6 +38,12 @@ export default function Choices({ category, character, count, handleNext }) {
   };
   // regex to clean up choices and remove any (film) or (TV series)
   const trimChoices = (choices) => {
+    console.log(
+      "og",
+      choices,
+      "trim",
+      choices.map((choice) => choice.replace(/\s?\((film|TV series)\)\s?/g, ""))
+    );
     return choices.map((choice) =>
       choice.replace(/\s?\((film|TV series)\)\s?/g, "")
     );
@@ -89,7 +95,12 @@ export default function Choices({ category, character, count, handleNext }) {
           type="primary"
           value={selected === character[category][0]}
           title="Next"
-          handleSubmit={() => handleNext(selected === character[category][0])}
+          handleSubmit={() =>
+            handleNext({
+              isCorrect: selected === character[category][0],
+              characterId: character._id,
+            })
+          }
         />
       )}
     </div>
