@@ -9,13 +9,13 @@ export default function Button({
   handleSubmit,
 }) {
   return (
-    <div
+    <button
       className={`button ${type} ${isSelected ? "selected" : ""}`}
       type="button"
       value={value ?? title}
       onClick={() => handleSubmit(value ?? title)}
     >
       {title}
-    </div>
+    </button>
   );
 }

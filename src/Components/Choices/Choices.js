@@ -62,7 +62,9 @@ export default function Choices({
                         ? "correct"
                         : "incorrect"
                       : ""
-                  } ${choice === selected ? "selected" : ""}`}
+                  } ${choice === selected ? "selected" : ""} ${
+                    selected ? "disabled" : ""
+                  }`}
                 >
                   <div className="index">{index + 1}</div>
                   <div className="text">{choice}</div>

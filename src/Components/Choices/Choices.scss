@@ -26,6 +26,9 @@
 h3.correct {
   color: $emerald;
 }
+h3.incorrect {
+  color: red;
+}
 
 .choice {
   justify-content: space-between;
@@ -37,12 +40,6 @@ h3.correct {
   &.correct.selected {
     border: 1px solid $emerald;
     background: $spring-green;
-  }
-
-  &.correct:not(.selected) {
-    .mark img {
-      fill: $emerald;
-    }
   }
 
   &.incorrect.selected {
@@ -73,9 +70,12 @@ h3.correct {
   &.secondary {
     background-color: $aquamarine;
   }
+  &.disabled {
+    pointer-events: none;
+  }
 }
 
-.choice:hover {
+.choice:hover:not(.disabled) {
   box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
     rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
     rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
