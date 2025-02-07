@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/react-disney-quiz/static/css/main.a3250ba2.css",
+    "main.js": "/react-disney-quiz/static/js/main.f504bba6.js",
+    "static/js/488.931c59c5.chunk.js": "/react-disney-quiz/static/js/488.931c59c5.chunk.js",
+    "static/media/img_royalty.jpg": "/react-disney-quiz/static/media/img_royalty.70f7b59882c0fae3b082.jpg",
+    "static/media/img_magic.jpg": "/react-disney-quiz/static/media/img_magic.f51e2189ebf471e7c742.jpg",
+    "static/media/img_explorer.jpg": "/react-disney-quiz/static/media/img_explorer.bbee223e3306e5d6d0c4.jpg",
+    "index.html": "/react-disney-quiz/index.html",
+    "static/media/icon_x.svg": "/react-disney-quiz/static/media/icon_x.188a312bb20b889308399479a09fc286.svg",
+    "static/media/icon_circle_fill.svg": "/react-disney-quiz/static/media/icon_circle_fill.a845cb44764f24f8b76ac781727c9577.svg",
+    "main.a3250ba2.css.map": "/react-disney-quiz/static/css/main.a3250ba2.css.map",
+    "main.f504bba6.js.map": "/react-disney-quiz/static/js/main.f504bba6.js.map",
+    "488.931c59c5.chunk.js.map": "/react-disney-quiz/static/js/488.931c59c5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a3250ba2.css",
+    "static/js/main.f504bba6.js"
+  ]
+}
