@@ -1,5 +1,7 @@
 @import "../../variables";
-
+.choices-container {
+  width: 100%;
+}
 .choices {
   display: flex;
   flex-direction: column;

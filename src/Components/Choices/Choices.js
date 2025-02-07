@@ -22,7 +22,7 @@ export default function Choices({
     setSelected(choice);
   };
   return (
-    <div>
+    <div className="choices-container">
       {selected ? (
         selected === character[category][0] ? (
           <h3 className="response correct">Correct!</h3>
