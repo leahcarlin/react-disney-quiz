@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
 import "./Choices.scss";
 import Button from "../Button/Button";
 import CheckFillIcon from "../../assets/images/icon_circle_fill.svg";
@@ -13,10 +14,28 @@ export default function Choices({
   onComplete,
 }) {
   const [selected, setSelected] = useState(null);
+  const nextBtnRef = useRef(null);
 
   useEffect(() => {
     setSelected(null);
   }, [count]);
+
+  // next button animtation
+  useEffect(() => {
+    if (selected && nextBtnRef.current) {
+      gsap.fromTo(
+        nextBtnRef.current,
+        { x: 0 },
+        {
+          x: 10,
+          duration: 0.5,
+          ease: "power1.inOut",
+          repeat: -1,
+          yoyo: true,
+        }
+      );
+    }
+  }, [selected]);
 
   const handleClick = (choice) => {
     setSelected(choice);
@@ -60,18 +79,20 @@ export default function Choices({
           : null}
       </ul>
       {selected && (
-        <Button
-          type="primary"
-          value={selected === character[category][0]}
-          title="Next"
-          handleSubmit={() =>
-            handleNext({
-              selected: selected,
-              isCorrect: selected === character[category][0],
-              characterId: character._id,
-            })
-          }
-        />
+        <div className="next-btn" ref={nextBtnRef}>
+          <Button
+            type="primary"
+            value={selected === character[category][0]}
+            title=">"
+            handleSubmit={() =>
+              handleNext({
+                selected: selected,
+                isCorrect: selected === character[category][0],
+                characterId: character._id,
+              })
+            }
+          />
+        </div>
       )}
     </div>
   );

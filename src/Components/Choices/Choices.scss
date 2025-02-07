@@ -1,6 +1,7 @@
 @import "../../variables";
 .choices-container {
   width: 100%;
+  position: relative;
 }
 .choices {
   display: flex;
@@ -93,4 +94,10 @@ h3.correct {
 
 .response {
   height: 20px;
+}
+
+.next-btn {
+  position: absolute;
+  top: 0;
+  right: -30%;
 }
