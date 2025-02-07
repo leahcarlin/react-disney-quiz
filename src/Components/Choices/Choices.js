@@ -32,49 +32,34 @@ export default function Choices({ category, character, count, handleNext }) {
     setChoices([]);
   }, [count]);
 
-  const handleClick = (e) => {
-    e.stopPropagation();
-    setSelected(e.target.value);
+  const handleClick = (choice) => {
+    setSelected(choice);
   };
-  // regex to clean up choices and remove any (film) or (TV series)
-  const trimChoices = (choices) => {
-    console.log(
-      "og",
-      choices,
-      "trim",
-      choices.map((choice) => choice.replace(/\s?\((film|TV series)\)\s?/g, ""))
-    );
-    return choices.map((choice) =>
-      choice.replace(/\s?\((film|TV series)\)\s?/g, "")
-    );
-  };
-
   return (
     <div>
       {selected ? (
         selected === character[category][0] ? (
-          <h3 className="correct">Correct!</h3>
+          <h3 className="response correct">Correct!</h3>
         ) : (
-          <h3 className="incorrect">Incorrect</h3>
+          <h3 className="response incorrect">Incorrect</h3>
         )
       ) : null}
       <ul className="choices">
         {error ? (
           <li>{error}</li>
         ) : choices.length > 0 ? (
-          trimChoices(choices).map((choice, index) => (
-            <li key={index}>
+          choices.map((choice, index) => (
+            <li key={index} onClick={() => !selected && handleClick(choice)}>
               <button
                 value={choice}
-                onClick={(e) => handleClick(e)}
-                style={{ pointerEvents: selected ? "none" : "all" }}
+                disabled={selected}
                 className={`choice ${
                   selected
                     ? choice === character[category][0]
                       ? "correct"
                       : "incorrect"
                     : ""
-                } ${choice === selected ? "selected" : ""} `}
+                } ${choice === selected ? "selected" : ""}`}
               >
                 <div className="index">{index + 1}</div>
                 <div className="text">{choice}</div>
@@ -97,6 +82,7 @@ export default function Choices({ category, character, count, handleNext }) {
           title="Next"
           handleSubmit={() =>
             handleNext({
+              selected: selected,
               isCorrect: selected === character[category][0],
               characterId: character._id,
             })

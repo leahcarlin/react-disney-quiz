@@ -15,7 +15,7 @@
   text-align: center;
   text-decoration: none;
   transition: all 250ms;
-  border: 0;
+  border: 2px solid transparent;
   font-size: 16px;
   user-select: none;
   -webkit-user-select: none;
@@ -28,6 +28,10 @@
 
   &.secondary {
     background-color: $spring-green;
+
+    &.selected {
+      border: 2px solid black;
+    }
   }
 }
 

@@ -4,6 +4,13 @@ import "./Intro.scss";
 
 export default function Intro({ toggleCategory }) {
   const [categorySelected, setCategorySelected] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const category = ["films", "tvShows"];
+
+  const handleClick = (index) => {
+    setSelectedIndex(index);
+    setCategorySelected(category[index]);
+  };
 
   return (
     <div className="intro">
@@ -12,13 +19,17 @@ export default function Intro({ toggleCategory }) {
       <div className="category">
         <Button
           title="Films"
-          handleSubmit={() => setCategorySelected("films")}
+          handleSubmit={() => handleClick(0)}
           type="secondary"
+          value={category[0]}
+          isSelected={category[selectedIndex] === category[0]}
         />
         <Button
           title="TV Shows"
-          handleSubmit={() => setCategorySelected("tvShows")}
+          handleSubmit={() => handleClick(1)}
           type="secondary"
+          value={category[1]}
+          isSelected={category[selectedIndex] === category[1]}
         />
       </div>
       <div className="start">

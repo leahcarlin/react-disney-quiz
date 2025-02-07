@@ -23,7 +23,7 @@ export default function Card({
     };
 
     getCharacter();
-  }, [category, count]);
+  }, [category, count, usedCharacterIds]);
   return (
     <div className="card">
       {error ? (

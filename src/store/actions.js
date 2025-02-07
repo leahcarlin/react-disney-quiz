@@ -44,23 +44,23 @@ export const getRandomCharacter = async (type, usedCharacterIds) => {
 
 export const getRandomChoices = async (type, id) => {
   const numChoices = 3;
-  const choices = [];
+  const choices = new Set();
+
   try {
-    // get random choices to include in multiple choice answer
     const characters = await getFilteredCharacters(type);
+
     if (characters) {
-      for (
-        let i = 0;
-        i < characters.length && choices.length < numChoices;
-        i++
-      ) {
+      while (choices.size < numChoices) {
         const choice = await getRandomCharacter(type, [id]);
 
-        choices.push(choice[type][0]);
+        // ensure no duplicates
+        if (choice._id !== id && !choices.has(choice[type][0])) {
+          choices.add(choice[type][0]);
+        }
       }
     }
-    // return only array of films or tvShows (not entire character)
-    return choices;
+    console.log(Array.from(choices));
+    return Array.from(choices); // convert Set back to Array before returning
   } catch (e) {
     console.error(e.message);
   }

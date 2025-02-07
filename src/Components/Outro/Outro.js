@@ -1,10 +1,11 @@
 import React from "react";
 import "./Outro.scss";
+import Button from "../Button/Button";
 import royaltyImg from "../../assets/images/img_royalty.jpg";
 import magicImg from "../../assets/images/img_magic.jpg";
 import explorerImg from "../../assets/images/img_explorer.jpg";
 
-export default function Outro({ category, numCorrect }) {
+export default function Outro({ category, numCorrect, handleSubmit }) {
   const resultText = [
     {
       title: "Disney Royalty",
@@ -39,6 +40,7 @@ export default function Outro({ category, numCorrect }) {
         <img src={result.img} alt="result" />
       </div>
       <h3>{result.description}</h3>
+      <Button title="Start over" type="primary" handleSubmit={handleSubmit} />
     </div>
   );
 }
