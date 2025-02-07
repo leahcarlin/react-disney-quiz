@@ -1,35 +1,21 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { getRandomChoices } from "../../store/actions";
-import { shuffleArray } from "../../utils";
+import React, { useState, useEffect } from "react";
 import "./Choices.scss";
 import Button from "../Button/Button";
 import CheckFillIcon from "../../assets/images/icon_circle_fill.svg";
 import CloseIcon from "../../assets/images/icon_x.svg";
 
-export default function Choices({ category, character, count, handleNext }) {
-  const [choices, setChoices] = useState([]);
-  const [error, setError] = useState("");
+export default function Choices({
+  character,
+  choices,
+  category,
+  count,
+  handleNext,
+  onComplete,
+}) {
   const [selected, setSelected] = useState(null);
-
-  const getChoices = useCallback(async () => {
-    try {
-      const data = await getRandomChoices(category, character._id);
-      const options = [...data, character[category][0]];
-      setChoices(shuffleArray(options));
-    } catch (err) {
-      setError(err.message);
-    }
-  }, [category, character]);
-
-  useEffect(() => {
-    if (character) {
-      getChoices();
-    }
-  }, [character, getChoices]);
 
   useEffect(() => {
     setSelected(null);
-    setChoices([]);
   }, [count]);
 
   const handleClick = (choice) => {
@@ -45,35 +31,33 @@ export default function Choices({ category, character, count, handleNext }) {
         )
       ) : null}
       <ul className="choices">
-        {error ? (
-          <li>{error}</li>
-        ) : choices.length > 0 ? (
-          choices.map((choice, index) => (
-            <li key={index} onClick={() => !selected && handleClick(choice)}>
-              <button
-                value={choice}
-                disabled={selected}
-                className={`choice ${
-                  selected
-                    ? choice === character[category][0]
-                      ? "correct"
-                      : "incorrect"
-                    : ""
-                } ${choice === selected ? "selected" : ""}`}
-              >
-                <div className="index">{index + 1}</div>
-                <div className="text">{choice}</div>
-                <div className="mark">
-                  {selected && choice === character[category][0] ? (
-                    <img src={CheckFillIcon} alt="Icon" />
-                  ) : choice === selected ? (
-                    <img src={CloseIcon} alt="Icon" />
-                  ) : null}
-                </div>
-              </button>
-            </li>
-          ))
-        ) : null}
+        {choices.length > 0
+          ? choices.map((choice, index) => (
+              <li key={index} onClick={() => !selected && handleClick(choice)}>
+                <button
+                  value={choice}
+                  disabled={selected}
+                  className={`choice ${
+                    selected
+                      ? choice === character[category][0]
+                        ? "correct"
+                        : "incorrect"
+                      : ""
+                  } ${choice === selected ? "selected" : ""}`}
+                >
+                  <div className="index">{index + 1}</div>
+                  <div className="text">{choice}</div>
+                  <div className="mark">
+                    {selected && choice === character[category][0] ? (
+                      <img src={CheckFillIcon} alt="Icon" />
+                    ) : choice === selected ? (
+                      <img src={CloseIcon} alt="Icon" />
+                    ) : null}
+                  </div>
+                </button>
+              </li>
+            ))
+          : null}
       </ul>
       {selected && (
         <Button

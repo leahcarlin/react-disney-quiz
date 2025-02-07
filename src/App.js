@@ -59,8 +59,6 @@ function App() {
           />
         ) : (
           <div className="quiz">
-            <h1>Disney Quiz</h1>
-            <ProgressBar count={count} />
             <Card
               count={count}
               selected={selected}
