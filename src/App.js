@@ -2,7 +2,6 @@ import "./App.css";
 import { useState } from "react";
 import Card from "./Components/Card/Card.js";
 import Intro from "./Components/Intro/Intro.js";
-import ProgressBar from "./Components/ProgressBar/ProgressBar.js";
 import Outro from "./Components/Outro/Outro.js";
 import "./App.scss";
 
