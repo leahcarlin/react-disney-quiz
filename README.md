@@ -2,6 +2,8 @@
 
 Welcome to the **Disney Quiz**, a fun and interactive quiz game that tests your knowledge of Disney characters! This app is built using **React** and leverages the free [Disney API](https://disneyapi.dev/) to fetch character data dynamically.
 
+## [Take the quiz](https://leahcarlin.github.io/react-disney-quiz/)
+
 ## 🚀 Features
 
 - 🔍 **Test Your Disney Knowledge** – Answer questions based on Disney films and TV shows.
