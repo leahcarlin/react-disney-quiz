@@ -2,6 +2,7 @@
 .choices-container {
   width: 100%;
   position: relative;
+  min-height: 20px;
 }
 .choices {
   display: flex;
@@ -21,6 +22,10 @@
     list-style-type: none;
     justify-content: center;
   }
+}
+
+h3.response {
+  height: 30px;
 }
 
 h3.correct {

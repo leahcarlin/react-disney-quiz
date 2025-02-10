@@ -42,13 +42,21 @@ export default function Choices({
   };
   return (
     <div className="choices-container">
-      {selected ? (
-        selected === character[category][0] ? (
-          <h3 className="response correct">Correct!</h3>
-        ) : (
-          <h3 className="response incorrect">Incorrect</h3>
-        )
-      ) : null}
+      <h3
+        className={`response ${
+          selected
+            ? selected === character[category][0]
+              ? "correct"
+              : "incorrect"
+            : ""
+        }`}
+      >
+        {selected
+          ? selected === character[category][0]
+            ? "Correct!"
+            : "Incorrect"
+          : ""}
+      </h3>
       <ul className="choices">
         {choices.length > 0
           ? choices.map((choice, index) => (
