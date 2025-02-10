@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/react-disney-quiz/static/css/main.a3250ba2.css",
-    "main.js": "/react-disney-quiz/static/js/main.f504bba6.js",
+    "main.css": "/react-disney-quiz/static/css/main.cbbbda03.css",
+    "main.js": "/react-disney-quiz/static/js/main.24a6d5e1.js",
     "static/js/488.931c59c5.chunk.js": "/react-disney-quiz/static/js/488.931c59c5.chunk.js",
     "static/media/img_royalty.jpg": "/react-disney-quiz/static/media/img_royalty.70f7b59882c0fae3b082.jpg",
     "static/media/img_magic.jpg": "/react-disney-quiz/static/media/img_magic.f51e2189ebf471e7c742.jpg",
+    "static/media/loading.gif": "/react-disney-quiz/static/media/loading.a6fe9de182c7859d2c6c.gif",
     "static/media/img_explorer.jpg": "/react-disney-quiz/static/media/img_explorer.bbee223e3306e5d6d0c4.jpg",
     "index.html": "/react-disney-quiz/index.html",
     "static/media/icon_x.svg": "/react-disney-quiz/static/media/icon_x.188a312bb20b889308399479a09fc286.svg",
     "static/media/icon_circle_fill.svg": "/react-disney-quiz/static/media/icon_circle_fill.a845cb44764f24f8b76ac781727c9577.svg",
-    "main.a3250ba2.css.map": "/react-disney-quiz/static/css/main.a3250ba2.css.map",
-    "main.f504bba6.js.map": "/react-disney-quiz/static/js/main.f504bba6.js.map",
+    "main.cbbbda03.css.map": "/react-disney-quiz/static/css/main.cbbbda03.css.map",
+    "main.24a6d5e1.js.map": "/react-disney-quiz/static/js/main.24a6d5e1.js.map",
     "488.931c59c5.chunk.js.map": "/react-disney-quiz/static/js/488.931c59c5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a3250ba2.css",
-    "static/js/main.f504bba6.js"
+    "static/css/main.cbbbda03.css",
+    "static/js/main.24a6d5e1.js"
   ]
 }
