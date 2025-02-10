@@ -2,7 +2,6 @@
 .choices-container {
   width: 100%;
   position: relative;
-  min-height: 20px;
 }
 .choices {
   display: flex;
@@ -10,6 +9,7 @@
   align-items: center;
   padding: 0;
   font-family: "Palanquin", serif;
+  margin: 20px 0 0 0;
 
   li,
   .choice {
@@ -22,10 +22,6 @@
     list-style-type: none;
     justify-content: center;
   }
-}
-
-h3.response {
-  height: 30px;
 }
 
 h3.correct {
@@ -98,11 +94,28 @@ h3.incorrect {
 }
 
 .response {
-  height: 20px;
+  min-height: 42px;
+  margin: 0;
 }
 
 .next-btn {
-  position: absolute;
-  top: 0;
-  right: -30%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+/* Mobile Responsive Styles */
+// Desktop
+@media (min-width: 1024px) {
+  .next-btn {
+    position: absolute;
+    top: 0;
+    right: -30%;
+  }
+}
+/* Tablet */
+@media (min-width: 600px) and (max-width: 1023px) {
+  .next-btn {
+    bottom: -10%;
+  }
 }

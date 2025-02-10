@@ -67,7 +67,7 @@ export default function Card({
     <div className="card">
       {error ? (
         <h2>{error}</h2>
-      ) : character ? (
+      ) : loadComplete ? (
         <div>
           <div className="header">
             <h1>Disney Quiz</h1>

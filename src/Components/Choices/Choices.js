@@ -42,21 +42,6 @@ export default function Choices({
   };
   return (
     <div className="choices-container">
-      <h3
-        className={`response ${
-          selected
-            ? selected === character[category][0]
-              ? "correct"
-              : "incorrect"
-            : ""
-        }`}
-      >
-        {selected
-          ? selected === character[category][0]
-            ? "Correct!"
-            : "Incorrect"
-          : ""}
-      </h3>
       <ul className="choices">
         {choices.length > 0
           ? choices.map((choice, index) => (
@@ -88,6 +73,21 @@ export default function Choices({
             ))
           : null}
       </ul>
+      <h3
+        className={`response ${
+          selected
+            ? selected === character[category][0]
+              ? "correct"
+              : "incorrect"
+            : ""
+        }`}
+      >
+        {selected
+          ? selected === character[category][0]
+            ? "Correct!"
+            : "Incorrect"
+          : ""}
+      </h3>
       {selected && (
         <div className="next-btn" ref={nextBtnRef}>
           <Button

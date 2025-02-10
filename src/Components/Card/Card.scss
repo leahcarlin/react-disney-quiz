@@ -10,7 +10,9 @@
   border-radius: 20px;
   margin: 20px;
 }
-
+.card {
+  width: 100vw;
+}
 .character {
   background: $gradient-radial;
   border-radius: $border-radius-regular;
@@ -37,7 +39,8 @@
   object-fit: cover;
 }
 
-// desktop
+/* Mobile Responsive Styles */
+// Desktop
 @media (min-width: 1024px) {
   .card {
     width: 600px;
