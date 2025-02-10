@@ -8,7 +8,7 @@ import "./App.scss";
 function App() {
   const [introComplete, setIntroComplete] = useState(false);
   const [category, setCategory] = useState(null);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
   const [numCorrect, setNumCorrect] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false);
   const [usedCharacterIds, setUsedCharacterIds] = useState([]);
@@ -38,7 +38,7 @@ function App() {
   };
 
   const triggerStart = () => {
-    setCount(1); // reset count
+    setCount(0); // reset count
     setQuizFinished(false);
     setIntroComplete(false);
     setCategory(null);

@@ -3,7 +3,7 @@ import React from "react";
 export default function ProgressBar({ count }) {
   const totalQuestions = 10;
   // Calculate the progress percentage
-  const progress = count === 1 ? 0 : (count / totalQuestions) * 100;
+  const progress = count === 0 ? 1 : (count / totalQuestions) * 100;
   return (
     <div>
       <div
