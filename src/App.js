@@ -5,6 +5,7 @@ import Intro from "./Components/Intro/Intro.js";
 import Outro from "./Components/Outro/Outro.js";
 import { Characters } from "./store/Characters.js";
 import { getFilteredCharacters } from "./store/actions.js";
+import GitHubIcon from "./assets/images/icon_github.png";
 
 function App() {
   const [introComplete, setIntroComplete] = useState(false);
@@ -52,6 +53,16 @@ function App() {
 
   return (
     <div className="App">
+      <div className="github">
+        <a
+          href="https://github.com/leahcarlin/react-disney-quiz"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Check out the code
+          <img src={GitHubIcon} alt="GitHub" />
+        </a>
+      </div>
       {introComplete ? (
         quizFinished ? (
           <Outro
